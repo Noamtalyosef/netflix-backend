@@ -30,7 +30,7 @@ app.use('/api/usersInfo',usersInfoRouter);
 
 
 mongoose
-  .connect(process.env.MONGO_PW)
+  .connect("mongodb+srv://noamtal1234:1234@cluster0.15bgni8.mongodb.net/?retryWrites=true&w=majority")
   .then(() => {
     app.listen(port, () => {
       console.log('Server is running on port ' + port)
