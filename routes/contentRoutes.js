@@ -25,7 +25,7 @@ contentRouter.get(
   '/search',
     isAuth,
   expressAsyncHandler(async (req, res) => {
-    const query = req.query.query
+    const query = req.query.query //??
     const genre = req.query.genre
     try {
       let options = {}
@@ -56,7 +56,7 @@ contentRouter.get(
 
     try {
       if (type === 'series') {
-        content = await Content.aggregate([
+        content = await Content.aggregate([ 
           { $match: { isSeries: true } },
           { $sample: { size: 1 } }
         ])
@@ -74,6 +74,21 @@ contentRouter.get(
     }
   })
 )
+
+contentRouter.get(
+  '/:_id',
+    isAuth,
+  expressAsyncHandler(async (req, res) => {
+    try {
+      const data = await Content.findById(req.params._id)
+
+      res.status(200).json(data)
+    } catch (err) {
+      res.status(500).json(err)
+    }
+  })
+)
+
 
 contentRouter.get(
   '/:_id',

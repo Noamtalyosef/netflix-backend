@@ -31,13 +31,14 @@ authRouter.post(
 authRouter.post(
   '/register',
   expressAsyncHandler(async (req, res) => {
+    console.log(req.body)
     const newUser = new User({
       username: req.body.username,
       email: req.body.email,
       password: bcrypt.hashSync(req.body.password),
     });
     const user = await newUser.save();
-
+     console.log(user)
     res.send({
       _id: user._id,
       username: user.username,
