@@ -16,7 +16,7 @@ export const isAuth = (req, res, next) => {
   const authorization = req.headers.authorization;
   if (authorization) {
     const token = authorization.slice(7, authorization.length); // Bearer XXXXXX
-    jwt.verify(token, process.env.SECRET_KEY, (err, decode) => {
+    jwt.verify(token, 1234, (err, decode) => {
       if (err) {
         console.log('Invalid Token');
         res.status(401).send({ message: 'Invalid Token' });
