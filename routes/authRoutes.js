@@ -25,6 +25,9 @@ authRouter.post(
           token: generateToken(user),
         });
       }
+      else{
+        res.send("couldent compare");
+      }
     } else {
       res.status(401).send({ message: 'Invalid Password/User' });
     }
