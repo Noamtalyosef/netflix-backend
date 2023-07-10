@@ -9,9 +9,12 @@ const authRouter = express.Router();
 authRouter.post(
   '/login',
   expressAsyncHandler(async (req, res) => {
+          console.log("in login before user")
+
     const user = await User.findOne({ email: req.body.email });
 
     if (user) {
+      console.log("in login with user")
       if (bcrypt.compareSync(req.body.password, user.password)) {
         console.log('success');
         res.send({
